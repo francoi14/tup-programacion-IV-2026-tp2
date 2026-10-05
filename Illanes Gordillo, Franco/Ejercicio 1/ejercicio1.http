@@ -1,0 +1,58 @@
+### 1. Crear rectangulo valido
+POST http://localhost:3001/api/rectangulos
+Content-Type: application/json
+
+{
+  "lado1": 10.5,
+  "lado2": 5
+}
+
+### 2. Error: Intento de enviar perimetro calculado
+POST http://localhost:3001/api/rectangulos
+Content-Type: application/json
+
+{
+  "lado1": 4,
+  "lado2": 8,
+  "perimetro": 24
+}
+
+### 3. Error: Intento de enviar superficie calculada
+POST http://localhost:3001/api/rectangulos
+Content-Type: application/json
+
+{
+  "lado1": 4,
+  "lado2": 8,
+  "superficie": 32
+}
+
+### 4. Error: Lados con valores menores o iguales a cero
+POST http://localhost:3001/api/rectangulos
+Content-Type: application/json
+
+{
+  "lado1": -2,
+  "lado2": 0
+}
+
+### 5. Consultar todos los rectangulos
+GET http://localhost:3001/api/rectangulos
+
+### 6. Consultar rectangulo por ID existente
+GET http://localhost:3001/api/rectangulos/1
+
+### 7. Error: ID invalido en parametro de ruta
+GET http://localhost:3001/api/rectangulos/abc
+
+### 8. Actualizar lados de un rectangulo
+PUT http://localhost:3001/api/rectangulos/1
+Content-Type: application/json
+
+{
+  "lado1": 12,
+  "lado2": 6
+}
+
+### 9. Eliminar rectangulo
+DELETE http://localhost:3001/api/rectangulos/1

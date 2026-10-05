@@ -1,0 +1,67 @@
+### 1. Crear tarea pendiente
+POST http://localhost:3002/api/tareas
+Content-Type: application/json
+
+{
+  "nombre": "Estudiar para Programacion 4",
+  "completada": false
+}
+
+### 2. Crear segunda tarea completada
+POST http://localhost:3002/api/tareas
+Content-Type: application/json
+
+{
+  "nombre": "Comprar cafe",
+  "completada": true
+}
+
+### 3. Error: Tarea duplicada exacto
+POST http://localhost:3002/api/tareas
+Content-Type: application/json
+
+{
+  "nombre": "Estudiar para Programacion 4",
+  "completada": false
+}
+
+### 4. Error: Tarea duplicada con mayusculas y espacios
+POST http://localhost:3002/api/tareas
+Content-Type: application/json
+
+{
+  "nombre": "  estudiar PARA programacion 4  ",
+  "completada": true
+}
+
+### 5. Error: Estado no booleano
+POST http://localhost:3002/api/tareas
+Content-Type: application/json
+
+{
+  "nombre": "Hacer ejercicio",
+  "completada": "no_completada"
+}
+
+### 6. Consultar todas las tareas
+GET http://localhost:3002/api/tareas
+
+### 7. Filtrar tareas completadas
+GET http://localhost:3002/api/tareas?completada=true
+
+### 8. Filtrar tareas pendientes
+GET http://localhost:3002/api/tareas?completada=false
+
+### 9. Error: Filtro invalido en query param
+GET http://localhost:3002/api/tareas?completada=cualquiera
+
+### 10. Actualizar estado de una tarea
+PUT http://localhost:3002/api/tareas/1
+Content-Type: application/json
+
+{
+  "completada": true
+}
+
+### 11. Eliminar tarea
+DELETE http://localhost:3002/api/tareas/2

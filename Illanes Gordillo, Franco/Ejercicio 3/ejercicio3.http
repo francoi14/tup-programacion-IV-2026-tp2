@@ -1,0 +1,113 @@
+### 1. Consultar materias disponibles
+GET http://localhost:3003/api/materias
+
+### 2. Registrar calificacion valida
+POST http://localhost:3003/api/calificaciones
+Content-Type: application/json
+
+{
+  "alumno": "Franco Illanes",
+  "materia_id": 1,
+  "nota1": 8.5,
+  "nota2": 9.0,
+  "nota3": 7.5
+}
+
+### 3. Registrar calificacion de otro alumno en la misma materia
+POST http://localhost:3003/api/calificaciones
+Content-Type: application/json
+
+{
+  "alumno": "Lucas Gomez",
+  "materia_id": 1,
+  "nota1": 6.0,
+  "nota2": 7.0,
+  "nota3": 8.0
+}
+
+### 4. Error: Alumno duplicado en la misma materia (exacto)
+POST http://localhost:3003/api/calificaciones
+Content-Type: application/json
+
+{
+  "alumno": "Franco Illanes",
+  "materia_id": 1,
+  "nota1": 10.0,
+  "nota2": 10.0,
+  "nota3": 10.0
+}
+
+### 5. Error: Alumno duplicado con variacion de mayusculas y espacios
+POST http://localhost:3003/api/calificaciones
+Content-Type: application/json
+
+{
+  "alumno": "  franco ILLANES  ",
+  "materia_id": 1,
+  "nota1": 5.0,
+  "nota2": 5.0,
+  "nota3": 5.0
+}
+
+### 6. Error: Materia inexistente
+POST http://localhost:3003/api/calificaciones
+Content-Type: application/json
+
+{
+  "alumno": "Martin Perez",
+  "materia_id": 999,
+  "nota1": 7.0,
+  "nota2": 8.0,
+  "nota3": 9.0
+}
+
+### 7. Error: Notas fuera de escala (menor a 1 o mayor a 10)
+POST http://localhost:3003/api/calificaciones
+Content-Type: application/json
+
+{
+  "alumno": "Martin Perez",
+  "materia_id": 1,
+  "nota1": 0.5,
+  "nota2": 12.0,
+  "nota3": -4.0
+}
+
+### 8. Error: Falta una de las tres notas obligatorias
+POST http://localhost:3003/api/calificaciones
+Content-Type: application/json
+
+{
+  "alumno": "Martin Perez",
+  "materia_id": 1,
+  "nota1": 8.0,
+  "nota2": 7.0
+}
+
+### 9. Consultar todas las calificaciones con nombre de materia
+GET http://localhost:3003/api/calificaciones
+
+### 10. Filtrar calificaciones por materia
+GET http://localhost:3003/api/calificaciones?materia_id=1
+
+### 11. Filtrar calificaciones por nombre de alumno
+GET http://localhost:3003/api/calificaciones?alumno=Franco
+
+### 12. Consultar calificacion por ID existente
+GET http://localhost:3003/api/calificaciones/1
+
+### 13. Error: ID invalido en ruta
+GET http://localhost:3003/api/calificaciones/invalido
+
+### 14. Actualizar notas de un alumno
+PUT http://localhost:3003/api/calificaciones/1
+Content-Type: application/json
+
+{
+  "nota1": 9.5,
+  "nota2": 9.0,
+  "nota3": 8.5
+}
+
+### 15. Eliminar registro de calificacion
+DELETE http://localhost:3003/api/calificaciones/2
